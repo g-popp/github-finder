@@ -35,6 +35,18 @@ const GithubState = (props) => {
 		});
 	};
 
+	// Get Users
+	const getUsers = async () => {
+		setLoading();
+
+		const res = await axios.get('https://api.github.com/users');
+
+		dispatch({
+			type: GET_USERS,
+			payload: res.data,
+		});
+	};
+
 	// Get User
 	const getUser = async (username) => {
 		setLoading();

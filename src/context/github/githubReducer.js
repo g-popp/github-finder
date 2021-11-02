@@ -1,16 +1,21 @@
-import { getDefaultNormalizer } from '@testing-library/dom';
-import { act } from 'react-dom/test-utils';
 import {
 	SEARCH_USERS,
 	SET_LOADING,
 	CLEAR_USERS,
 	GET_USER,
 	GET_REPOS,
+	GET_USERS,
 } from '../types';
 
-export default (state, action) => {
+const githubReducer = (state, action) => {
 	switch (action.type) {
 		case SEARCH_USERS:
+			return {
+				...state,
+				users: action.payload,
+				loading: false,
+			};
+		case GET_USERS:
 			return {
 				...state,
 				users: action.payload,
@@ -44,3 +49,5 @@ export default (state, action) => {
 			return state;
 	}
 };
+
+export default githubReducer;
